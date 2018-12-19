@@ -35,6 +35,7 @@ class BurgerBuilder extends Component {
     axios
       .get("https://react-burger-app-api.firebaseio.com/ingredients.json")
       .then(response => {
+        console.log(response, "in component did mount");
         this.setState({ ingredients: response.data });
       })
       .then(() =>
@@ -120,38 +121,37 @@ class BurgerBuilder extends Component {
 
   purchaseContinueHandler = () => {
     // alert("You continue!");
-    this.setState({ loading: true });
-
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: "Clark Kent",
-        address: {
-          street: "344 Clinton Street Apt. 3-D",
-          zipCode: "66632",
-          country: "US"
-        },
-        email: "clarkkent@DailyPlanet.com"
-      },
-      deliveryMethod: "flying"
-    };
-    axios
-      .post("/orders.json", order)
-      .then(response => {
-        // console.log(response);
-        this.setState({
-          loading: false,
-          purchasing: false
-        });
-      })
-      .catch(error => {
-        // console.log(error);
-        this.setState({
-          loading: false,
-          purchasing: false
-        });
-      });
+    // this.setState({ loading: true });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: "Clark Kent",
+    //     address: {
+    //       street: "344 Clinton Street Apt. 3-D",
+    //       zipCode: "66632",
+    //       country: "US"
+    //     },
+    //     email: "clarkkent@DailyPlanet.com"
+    //   },
+    //   deliveryMethod: "flying"
+    // };
+    // axios
+    //   .post("/orders.json", order)
+    //   .then(response => {
+    //     // console.log(response);
+    //     this.setState({
+    //       loading: false,
+    //       purchasing: false
+    //     });
+    //   })
+    //   .catch(error => {
+    //     // console.log(error);
+    //     this.setState({
+    //       loading: false,
+    //       purchasing: false
+    //     });
+    //   });
   };
 
   render() {
