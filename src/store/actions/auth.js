@@ -1,4 +1,5 @@
 import axios from "axios";
+import urlKeys from "../../apiKeys";
 
 import * as actionTypes from "./actionsTypes";
 
@@ -32,13 +33,11 @@ export const auth = (email, password, isSignUp) => {
       password: password,
       returnSecureToken: true
     };
-    const apiKey = "";
-    let url =
-      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=";
+    const apiKey = urlKeys.apiKey;
+    let url = urlKeys.signUpUrl;
 
     if (!isSignUp) {
-      url =
-        "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=";
+      url = urlKeys.signInUrl;
     }
 
     url = url.concat(apiKey);
