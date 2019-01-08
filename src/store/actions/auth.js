@@ -1,5 +1,5 @@
 import axios from "axios";
-import urlKeys from "../../apiKeys";
+import * as apiUrls from "../../apiKey";
 
 import * as actionTypes from "./actionsTypes";
 
@@ -9,7 +9,7 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (idToken, userId) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     idToken: idToken,
@@ -33,11 +33,11 @@ export const auth = (email, password, isSignUp) => {
       password: password,
       returnSecureToken: true
     };
-    const apiKey = urlKeys.apiKey;
-    let url = urlKeys.signUpUrl;
+    const apiKey = apiUrls.authKey;
+    let url = apiUrls.signUpUrl;
 
     if (!isSignUp) {
-      url = urlKeys.signInUrl;
+      url = apiUrls.signInUrl;
     }
 
     url = url.concat(apiKey);

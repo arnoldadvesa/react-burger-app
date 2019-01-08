@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/store/actions/authKey.js
-/src/apiKeys.js
+/src/apiKey.js
