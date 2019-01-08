@@ -8,10 +8,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = authData => {
+export const authSuccess = (token, userId) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    authData: authData
+    idToken: idToken,
+    userId: userId
   };
 };
 
@@ -31,7 +32,7 @@ export const auth = (email, password, isSignUp) => {
       password: password,
       returnSecureToken: true
     };
-    const apiKey = "AIzaSyAT6i4ZhCsWfjN4fs2h1xnVAxTWwh7oSRY";
+    const apiKey = "";
     let url =
       "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=";
 
@@ -41,11 +42,12 @@ export const auth = (email, password, isSignUp) => {
     }
 
     url = url.concat(apiKey);
+
     axios
       .post(url, authData)
       .then(response => {
         console.log(response);
-        dispatch(authSuccess(response.data));
+        dispatch(authSuccess(response.data.idToken, response.datal.localId));
       })
       .catch(err => {
         console.log(err);
